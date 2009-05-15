@@ -3,7 +3,7 @@ Using Symfony YAML
 
 The Symfony YAML library is very simple and consists of two main classes: one
 to parse YAML strings (`sfYamlParser`), and the other to dump a PHP array to
-YAML string (`sfYamlDumper`).
+a YAML string (`sfYamlDumper`).
 
 On top of these two core classes, the main `sfYAML` class acts as a thin
 wrapper and simplifies common uses.
