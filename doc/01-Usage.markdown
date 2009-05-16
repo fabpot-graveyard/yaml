@@ -5,7 +5,7 @@ The Symfony YAML library is very simple and consists of two main classes: one
 to parse YAML strings (`sfYamlParser`), and the other to dump a PHP array to
 a YAML string (`sfYamlDumper`).
 
-On top of these two core classes, the main `sfYAML` class acts as a thin
+On top of these two core classes, the main `sfYaml` class acts as a thin
 wrapper and simplifies common uses.
 
 Reading YAML Files
@@ -37,11 +37,11 @@ occurred:
 >As the parser is reentrant, you can use the same parser object to load
 >different YAML strings.
 
-When loading a YAML file, it is sometimes better to use the `sfYAML::load()`
+When loading a YAML file, it is sometimes better to use the `sfYaml::load()`
 wrapper method:
 
     [php]
-    $loader = sfYAML::load('/path/to/file.yml');
+    $loader = sfYaml::load('/path/to/file.yml');
 
 The `sfYaml::load()` static method takes a YAML string or a file containing
 YAML. Internally, it calls the `sfYamlParser::parse()` method, but with some
