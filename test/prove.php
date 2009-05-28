@@ -24,7 +24,7 @@ class lime_symfony extends lime_harness
   }
 }
 
-$h = new lime_symfony(new lime_output_color());
+$h = new lime_symfony(new lime_output(isset($argv) && in_array('--color', $argv)));
 $h->base_dir = realpath(dirname(__FILE__).'/..');
 
 $h->register(array(
