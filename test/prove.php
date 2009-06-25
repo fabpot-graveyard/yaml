@@ -27,10 +27,12 @@ class lime_symfony extends lime_harness
 $h = new lime_symfony(new lime_output(isset($argv) && in_array('--color', $argv)));
 $h->base_dir = realpath(dirname(__FILE__).'/..');
 
-$h->register(array(
-  dirname(__FILE__).'/sfYamlInlineTest.php',
-  dirname(__FILE__).'/sfYamlDumperTest.php',
-  dirname(__FILE__).'/sfYamlParserTest.php',
-));
+foreach (new DirectoryIterator(dirname(__FILE__)) as $file)
+{
+  if (false !== strpos($file, 'Test.php'))
+  {
+    $h->register($file->getRealPath());
+  }
+}
 
 exit($h->run() ? 0 : 1);
