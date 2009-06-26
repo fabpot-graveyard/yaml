@@ -14,22 +14,19 @@ class lime_symfony extends lime_harness
 {
   protected function get_relative_file($file)
   {
-    $file = str_replace(DIRECTORY_SEPARATOR, '/', str_replace(array(
+    return str_replace(DIRECTORY_SEPARATOR, '/', str_replace(array(
       realpath($this->base_dir).DIRECTORY_SEPARATOR,
-      realpath($this->base_dir.'/../lib/plugins').DIRECTORY_SEPARATOR,
       $this->extension,
     ), '', $file));
-
-    return preg_replace('#^(.*?)Plugin/test/(unit|functional)/#', '[$1] $2/', $file);
   }
 }
 
 $h = new lime_symfony(new lime_output(isset($argv) && in_array('--color', $argv)));
-$h->base_dir = realpath(dirname(__FILE__).'/..');
+$h->base_dir = realpath(dirname(__FILE__));
 
-foreach (new DirectoryIterator(dirname(__FILE__)) as $file)
+foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(dirname(__FILE__)), RecursiveIteratorIterator::LEAVES_ONLY) as $file)
 {
-  if (false !== strpos($file, 'Test.php'))
+  if (preg_match('/Test\.php$/', $file))
   {
     $h->register($file->getRealPath());
   }
