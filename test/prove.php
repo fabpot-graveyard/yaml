@@ -10,18 +10,7 @@
 
 require_once(dirname(__FILE__).'/lime/lime.php');
 
-class lime_symfony extends lime_harness
-{
-  protected function get_relative_file($file)
-  {
-    return str_replace(DIRECTORY_SEPARATOR, '/', str_replace(array(
-      realpath($this->base_dir).DIRECTORY_SEPARATOR,
-      $this->extension,
-    ), '', $file));
-  }
-}
-
-$h = new lime_symfony(new lime_output(isset($argv) && in_array('--color', $argv)));
+$h = new lime_harness(new lime_output(isset($argv) && in_array('--color', $argv)));
 $h->base_dir = realpath(dirname(__FILE__));
 
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(dirname(__FILE__)), RecursiveIteratorIterator::LEAVES_ONLY) as $file)
