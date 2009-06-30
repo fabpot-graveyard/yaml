@@ -10,7 +10,10 @@
 
 require_once(dirname(__FILE__).'/lime/lime.php');
 
-$h = new lime_harness(new lime_output(isset($argv) && in_array('--color', $argv)));
+$h = new lime_harness(array(
+  'force_colors' => isset($argv) && in_array('--color', $argv),
+  'verbose'      => isset($argv) && in_array('--verbose', $argv),
+));
 $h->base_dir = realpath(dirname(__FILE__));
 
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(dirname(__FILE__)), RecursiveIteratorIterator::LEAVES_ONLY) as $file)
