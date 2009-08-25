@@ -2,6 +2,7 @@
 - sfTests
 - sfObjects
 - sfMergeKey
+- sfQuotes
 - YtsAnchorAlias
 - YtsBasicTests
 - YtsBlockMapping

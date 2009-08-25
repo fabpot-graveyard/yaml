@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__).'/lime/lime.php');
 require_once(dirname(__FILE__).'/../lib/sfYamlParser.php');
 
-$t = new lime_test(141);
+$t = new lime_test(142);
 
 $parser = new sfYamlParser();
 
