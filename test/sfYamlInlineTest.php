@@ -9,7 +9,10 @@
  */
 
 require_once(dirname(__FILE__).'/lime/lime.php');
+require_once(dirname(__FILE__).'/../lib/sfYaml.php');
 require_once(dirname(__FILE__).'/../lib/sfYamlInline.php');
+
+sfYaml::setSpecVersion('1.1');
 
 $t = new lime_test(118);
 
