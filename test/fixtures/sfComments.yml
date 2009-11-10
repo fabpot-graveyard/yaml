@@ -31,3 +31,11 @@ yaml: |
       foo: bar # a comment
 php: |
     array('foo' => array('foo' => 'bar'))
+--- 
+test: 'Value starting with a #' 
+brief: > 
+  'Value starting with a #' 
+yaml: | 
+    foo:   '#bar' 
+php: | 
+    array('foo' => '#bar') 

@@ -15,7 +15,7 @@ require_once(dirname(__FILE__).'/../lib/sfYamlDumper.php');
 
 sfYaml::setSpecVersion('1.1');
 
-$t = new lime_test(142);
+$t = new lime_test(143);
 
 $parser = new sfYamlParser();
 $dumper = new sfYamlDumper();
@@ -57,6 +57,7 @@ foreach ($files as $file)
 // inline level
 $array = array(
   '' => 'bar',
+  'foo' => '#bar',
   'foo\'bar' => array(),
   'bar' => array(1, 'foo'),
   'foobar' => array(
@@ -70,13 +71,14 @@ $array = array(
 );
 
 $expected = <<<EOF
-{ '': bar, 'foo''bar': {  }, bar: [1, foo], foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } } }
+{ '': bar, foo: '#bar', 'foo''bar': {  }, bar: [1, foo], foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } } }
 EOF;
 $t->is($dumper->dump($array, -10), $expected, '->dump() takes an inline level argument');
 $t->is($dumper->dump($array, 0), $expected, '->dump() takes an inline level argument');
 
 $expected = <<<EOF
 '': bar
+foo: '#bar'
 'foo''bar': {  }
 bar: [1, foo]
 foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } }
@@ -86,6 +88,7 @@ $t->is($dumper->dump($array, 1), $expected, '->dump() takes an inline level argu
 
 $expected = <<<EOF
 '': bar
+foo: '#bar'
 'foo''bar': {  }
 bar:
   - 1
@@ -100,6 +103,7 @@ $t->is($dumper->dump($array, 2), $expected, '->dump() takes an inline level argu
 
 $expected = <<<EOF
 '': bar
+foo: '#bar'
 'foo''bar': {  }
 bar:
   - 1
@@ -118,6 +122,7 @@ $t->is($dumper->dump($array, 3), $expected, '->dump() takes an inline level argu
 
 $expected = <<<EOF
 '': bar
+foo: '#bar'
 'foo''bar': {  }
 bar:
   - 1
