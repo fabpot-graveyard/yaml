@@ -108,3 +108,32 @@ yaml: |
   0: bar
 php: |
   array(1 => 'foo', 0 => 'bar')
+---
+test: Octal
+brief: as in spec example 2.19, octal value is converted
+yaml: |
+  foo: 0123
+php: |
+  array('foo' => 83)
+---
+test: Octal strings
+brief: Octal notation in a string must remain a string
+yaml: |
+  foo: "0123"
+php: |
+  array('foo' => '0123')
+---
+test: Octal strings
+brief: Octal notation in a string must remain a string
+yaml: |
+  foo: '0123'
+php: |
+  array('foo' => '0123')
+---
+test: Octal strings
+brief: Octal notation in a string must remain a string
+yaml: |
+  foo: |
+    0123
+php: |
+  array('foo' => "0123\n")
