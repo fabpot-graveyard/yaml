@@ -15,7 +15,7 @@ require_once(dirname(__FILE__).'/../lib/sfYamlDumper.php');
 
 sfYaml::setSpecVersion('1.1');
 
-$t = new lime_test(143);
+$t = new lime_test(144);
 
 $parser = new sfYamlParser();
 $dumper = new sfYamlDumper();
