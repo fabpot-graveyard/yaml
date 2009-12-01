@@ -108,12 +108,8 @@ If you are a Git user, there is an official
 Support
 -------
 
-Support is given through the symfony user
-[mailing-list](http://groups.google.com/group/symfony-users).
-
-If you want to discuss the enhancement of Symfony YAML, you can also subscribe
-to the symfony development
-[mailing-list](http://groups.google.com/group/symfony-devs).
+Support questions and enhancements can be discussed on the
+[mailing-list](http://groups.google.com/group/symfony-components).
 
 If you find a bug, you can create a ticket at the symfony
 [trac](http://trac.symfony-project.org/newticket) under the *YAML* component.
