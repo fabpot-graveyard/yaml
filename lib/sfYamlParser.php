@@ -72,7 +72,7 @@ class sfYamlParser
       }
 
       $isRef = $isInPlace = $isProcessed = false;
-      if (preg_match('#^\-(\s+(?P<value>.+?))?\s*$#', $this->currentLine, $values))
+      if (preg_match('#^\-((?P<leadspaces>\s+)(?P<value>.+?))?\s*$#', $this->currentLine, $values))
       {
         if (isset($values['value']) && preg_match('#^&(?P<ref>[^ ]+) *(?P<value>.*)#', $values['value'], $matches))
         {
@@ -94,13 +94,30 @@ class sfYamlParser
           {
             $data[] = array($matches[1] => sfYamlInline::load($matches[2]));
           }
+          elseif (isset($values['leadspaces'])
+            && ' ' == $values['leadspaces']
+            && preg_match('#^(?P<key>'.sfYamlInline::REGEX_QUOTED_STRING.'|[^ \'"].*?) *\:(\s+(?P<value>.+?))?\s*$#', $values['value'], $matches))
+          {
+            // this is a compact notation element, add to next block and parse
+            $c = $this->getRealCurrentLineNb();
+            $parser = new sfYamlParser($c);
+            $parser->refs =& $this->refs;
+
+            $block = $values['value'];
+            if (!$this->isNextLineIndented())
+            {
+              $block .= "\n".$this->getNextEmbedBlock();
+            }
+
+            $data[] = $parser->parse($block);
+          }
           else
           {
             $data[] = $this->parseValue($values['value']);
           }
         }
       }
-      else if (preg_match('#^(?P<key>'.sfYamlInline::REGEX_QUOTED_STRING.'|[^ ].*?) *\:(\s+(?P<value>.+?))?\s*$#', $this->currentLine, $values))
+      else if (preg_match('#^(?P<key>'.sfYamlInline::REGEX_QUOTED_STRING.'|[^ \'"].*?) *\:(\s+(?P<value>.+?))?\s*$#', $this->currentLine, $values))
       {
         $key = sfYamlInline::parseScalar($values['key']);
 
