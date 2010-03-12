@@ -307,12 +307,9 @@ class sfYamlParser
 
     while ($this->moveToNextLine())
     {
-      if ($this->isCurrentLineEmpty())
+      if ($this->isCurrentLineBlank())
       {
-        if ($this->isCurrentLineBlank())
-        {
-          $data[] = substr($this->currentLine, $newIndent);
-        }
+        $data[] = substr($this->currentLine, $newIndent);
 
         continue;
       }
