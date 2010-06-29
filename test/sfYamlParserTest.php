@@ -14,7 +14,7 @@ require_once(dirname(__FILE__).'/../lib/sfYamlParser.php');
 
 sfYaml::setSpecVersion('1.1');
 
-$t = new lime_test(152);
+$t = new lime_test(153);
 
 $parser = new sfYamlParser();
 
@@ -68,6 +68,14 @@ foreach ($yamls as $yaml)
     $t->pass('YAML files must not contain tabs');
   }
 }
+
+$yaml = <<<EOF
+--- %YAML:1.0
+foo
+...
+EOF;
+
+$t->is('foo', $parser->parse($yaml));
 
 // objects
 $t->diag('Objects support');
