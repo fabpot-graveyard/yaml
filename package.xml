@@ -10,9 +10,9 @@
   <email>fabien.potencier@symfony-project.org</email>
   <active>yes</active>
  </lead>
- <date>2009-12-01</date>
+ <date>2010-11-29</date>
  <version>
-   <release>1.0.2</release>
+   <release>1.0.4</release>
    <api>1.0.0</api>
  </version>
  <stability>
@@ -51,6 +51,45 @@
 
  <changelog>
    <release>
+      <version> 
+        <release>1.0.4</release> 
+        <api>1.0.0</api> 
+      </version> 
+      <stability> 
+        <release>stable</release> 
+        <api>stable</api> 
+      </stability> 
+      <license uri="http://www.symfony-project.com/license">MIT license</license> 
+      <date>2010-11-29</date> 
+      <license>MIT</license> 
+      <notes> 
+        * fabien: fixed parsing of simple inline documents
+      </notes> 
+    </release>
+   <release>
+      <version> 
+        <release>1.0.3</release> 
+        <api>1.0.0</api> 
+      </version> 
+      <stability> 
+        <release>stable</release> 
+        <api>stable</api> 
+      </stability> 
+      <license uri="http://www.symfony-project.com/license">MIT license</license> 
+      <date>2010-04-06</date> 
+      <license>MIT</license> 
+      <notes> 
+        * fabien: fixed YAML parser when mbstring.func_overload is used with an mbstring.internal_encoding different from ASCII 
+        * fabien: fixed offset when the document use --- or the %YAML element 
+        * fabien: added ? in the list of characters that trigger quoting (for compatibility with libyaml) 
+        * fabien: added backtick to the list of characters that trigger quotes as it is reserved for future use 
+        * FabianLange: fixed missing newline in sfYamlParser when parsing certain symfony core files 
+        * FabianLange: removed the unused value property from Parser 
+        * fabien: changed Exception to InvalidArgumentException 
+        * fabien: fixed YAML dump when a string contains a \r without a \n 
+      </notes> 
+    </release>
+    <release>
      <version>
        <release>1.0.2</release>
        <api>1.0.0</api>
