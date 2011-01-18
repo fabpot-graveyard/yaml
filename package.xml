@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.4.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.1 http://pear.php.net/dtd/package-2.1.xsd">
  <name>YAML</name>
  <channel>pear.symfony-project.com</channel>
  <summary>The Symfony YAML Component.</summary>
@@ -27,10 +27,10 @@
      <file name="LICENSE" role="doc" />
 
      <dir name="lib">
-       <file install-as="SymfonyComponents/YAML/sfYaml.php" name="sfYaml.php" role="php" />
-       <file install-as="SymfonyComponents/YAML/sfYamlDumper.php" name="sfYamlDumper.php" role="php" />
-       <file install-as="SymfonyComponents/YAML/sfYamlInline.php" name="sfYamlInline.php" role="php" />
-       <file install-as="SymfonyComponents/YAML/sfYamlParser.php" name="sfYamlParser.php" role="php" />
+       <file name="sfYaml.php" role="php" />
+       <file name="sfYamlDumper.php" role="php" />
+       <file name="sfYamlInline.php" role="php" />
+       <file name="sfYamlParser.php" role="php" />
      </dir>
    </dir>
  </contents>
@@ -47,6 +47,12 @@
  </dependencies>
 
  <phprelease>
+   <filelist>
+     <install as="SymfonyComponents/YAML/sfYaml.php" name="lib/sfYaml.php" />
+     <install as="SymfonyComponents/YAML/sfYamlDumper.php" name="lib/sfYamlDumper.php" />
+     <install as="SymfonyComponents/YAML/sfYamlInline.php" name="lib/sfYamlInline.php" />
+     <install as="SymfonyComponents/YAML/sfYamlParser.php" name="lib/sfYamlParser.php" />
+   </filelist>
  </phprelease>
 
  <changelog>
@@ -61,7 +67,6 @@
       </stability> 
       <license uri="http://www.symfony-project.com/license">MIT license</license> 
       <date>2010-11-29</date> 
-      <license>MIT</license> 
       <notes> 
         * fabien: fixed parsing of simple inline documents
       </notes> 
@@ -77,7 +82,6 @@
       </stability> 
       <license uri="http://www.symfony-project.com/license">MIT license</license> 
       <date>2010-04-06</date> 
-      <license>MIT</license> 
       <notes> 
         * fabien: fixed YAML parser when mbstring.func_overload is used with an mbstring.internal_encoding different from ASCII 
         * fabien: fixed offset when the document use --- or the %YAML element 
@@ -100,7 +104,6 @@
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
      <date>2009-12-01</date>
-     <license>MIT</license>
      <notes>
        * fabien: fixed \ usage in quoted string
      </notes>
@@ -116,7 +119,6 @@
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
      <date>2009-12-01</date>
-     <license>MIT</license>
      <notes>
        * fabien: fixed a possible loop in parsing a non-valid quoted string
      </notes>
@@ -132,7 +134,6 @@
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
      <date>2009-11-30</date>
-     <license>MIT</license>
      <notes>
        * fabien: first stable release as a Symfony Component
      </notes>
