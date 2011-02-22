@@ -30,7 +30,7 @@
        <file name="sfYaml.php" role="php" />
        <file name="sfYamlDumper.php" role="php" />
        <file name="sfYamlInline.php" role="php" />
-       <file name="sfYamlParser.php" role="php"
+       <file name="sfYamlParser.php" role="php" />
      </dir>
    </dir>
  </contents>
