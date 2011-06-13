@@ -103,7 +103,7 @@ class sfYamlInline
       case is_numeric($value):
         return is_infinite($value) ? str_ireplace('INF', '.Inf', strval($value)) : (is_string($value) ? "'$value'" : $value);
       case false !== strpos($value, "\n") || false !== strpos($value, "\r"):
-        return sprintf('"%s"', str_replace(array('"', "\n", "\r"), array('\\"', '\n', '\r'), $value));
+        return sprintf('"%s"', str_replace(array('"', "\n", "\r"), array('\\"', '\n', '\r'), str_replace('\\', '\\\\', $value)));
       case preg_match('/[ \s \' " \: \{ \} \[ \] , & \* \# \?] | \A[ - ? | < > = ! % @ ` ]/x', $value):
         return sprintf("'%s'", str_replace('\'', '\'\'', $value));
       case '' == $value:
@@ -224,7 +224,22 @@ class sfYamlInline
     if ('"' == $scalar[$i])
     {
       // evaluate the string
-      $output = str_replace(array('\\"', '\\n', '\\r'), array('"', "\n", "\r"), $output);
+
+      // 2n+1 '\' and 'n' -> 2n '\' and newline
+      // needs to be done twice to deal with repeated symbols (like "\n\n\n")
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\n/', "\\1\\2\\2\n", $output);
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\n/', "\\1\\2\\2\n", $output);
+
+      // 2n+1 '\' and 'r' -> 2n '\' and return
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\r/', "\\1\\2\\2\r", $output);
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\r/', "\\1\\2\\2\r", $output);
+
+      // 2n+1 '\' and '"' -> 2n '\' and '"'
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\"/', "\\1\\2\\2\"", $output);
+      $output = preg_replace('/(^|[^\\\\])(\\\\*)\\2\\\\"/', "\\1\\2\\2\"", $output);
+
+      // \\ -> \
+      $output = str_replace('\\\\', '\\', $output);
     }
     else
     {
