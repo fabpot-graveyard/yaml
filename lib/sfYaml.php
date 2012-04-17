@@ -46,6 +46,41 @@ class sfYaml
     return self::$spec;
   }
 
+  static public function mergeFiles()
+  {
+
+    $args = func_get_args();
+    $result = array();
+    foreach($args as $y)  
+    {
+      $result = self::_arrayMerge($result,self::loadFile($y));
+    }
+    return $result;
+  }
+  /**
+   * TRUE recursively merge Array;
+   * copy & paste from limb-project
+   * https://github.com/idler/limb/blob/master/core/src/lmbArrayHelper.class.php
+   */
+
+  static public function _arrayMerge($a1, $a2)
+  {
+    if(!is_array($a2)) return $a1;
+    $n = $a1;
+    foreach($a2 as $k => $v)
+      if(is_array($v) &&  isset($n[$k]) &&  is_array($n[$k]))
+        $n[$k] = self :: _arrayMerge($n[$k], $v);
+      else
+        $n[$k] = $v;
+    return $n;
+  }
+
+  static public function loadFile($path)
+  {
+    $content = file_get_contents($path);
+    return self::load($content);
+  }
+
   /**
    * Loads YAML into a PHP array.
    *
