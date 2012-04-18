@@ -417,6 +417,18 @@ class sfYamlInline
         return floatval(str_replace(',', '', $scalar));
       case preg_match(self::getTimestampRegex(), $scalar):
         return strtotime($scalar);
+      case 0 === strpos($scalar,'<?php'):
+        // get global variables
+        foreach($GLOBALS as $k=>$v){
+          global $$k;
+        }
+        $scalar = str_replace(array('<?php','?>'),array('',''),$scalar);
+        return self::ParseScalar(eval('return '.$scalar));
+      case 0 === strpos($scalar,'<GLOB'):
+        // EXAMPLE (variables must to be global //  
+        // data.dir: <?php return sprintf("/static/%s/%s",$app_name,$app_ver); 
+        $scalar = str_replace('<GLOB','',$scalar);
+        return self::parseScalar(eval(' return "'.preg_replace('#\[%([a-zA-Z0-9_]+)%\]#is','{\$GLOBALS[\'$1\']}',$scalar).'";'));
       default:
         return (string) $scalar;
     }

@@ -56,7 +56,7 @@ class sfYamlParser
     $this->currentLineNb = -1;
     $this->currentLine = '';
     $this->lines = explode("\n", $this->cleanup($value));
-
+    unset($value);
     if (function_exists('mb_internal_encoding') && ((int) ini_get('mbstring.func_overload')) & 2)
     {
       $mbEncoding = mb_internal_encoding();
