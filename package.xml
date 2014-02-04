@@ -96,7 +96,6 @@
         <api>stable</api> 
       </stability> 
       <date>2010-11-29</date> 
-      <license>MIT</license> 
       <notes> 
         * fabien: fixed parsing of simple inline documents
       </notes> 
@@ -111,7 +110,6 @@
         <api>stable</api> 
       </stability> 
       <date>2010-04-06</date> 
-      <license>MIT</license> 
       <notes> 
         * fabien: fixed YAML parser when mbstring.func_overload is used with an mbstring.internal_encoding different from ASCII 
         * fabien: fixed offset when the document use --- or the %YAML element 
@@ -133,7 +131,6 @@
        <api>stable</api>
      </stability>
      <date>2009-12-01</date>
-     <license>MIT</license>
      <notes>
        * fabien: fixed \ usage in quoted string
      </notes>
@@ -148,7 +145,6 @@
        <api>stable</api>
      </stability>
      <date>2009-12-01</date>
-     <license>MIT</license>
      <notes>
        * fabien: fixed a possible loop in parsing a non-valid quoted string
      </notes>
@@ -163,7 +159,6 @@
        <api>stable</api>
      </stability>
      <date>2009-11-30</date>
-     <license>MIT</license>
      <notes>
        * fabien: first stable release as a Symfony Component
      </notes>
